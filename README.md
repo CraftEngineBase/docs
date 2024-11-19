@@ -1,2 +1,1 @@
-# docs
-The official CraftEngine Documentation
+# The official CraftEngine Documentation
