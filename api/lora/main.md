@@ -21,6 +21,13 @@ Before generating images, understand the available options:
 - `response_format` (required): Choose between:
   - `url`: Returns a public URL to access your image
   - `base64`: Returns the image data directly, keeping it private within your system
+- `image_size` (optional): Choose your preferred image dimensions:
+  - `square_hd` (default): High-definition square format
+  - `square`: Standard square format
+  - `portrait_4_3`: Portrait orientation with 4:3 aspect ratio
+  - `portrait_16_9`: Portrait orientation with 16:9 aspect ratio
+  - `landscape_4_3`: Landscape orientation with 4:3 aspect ratio
+  - `landscape_16_9`: Landscape orientation with 16:9 aspect ratio
 
 ### 🖥️ Generate an Image
 
@@ -41,7 +48,8 @@ curl -X POST "https://api.craftengine.app/image/create/lora" \
      -d '{
        "prompt": "[Your Character] chilling in the sun",
        "lora_id": "your-lora-id",
-       "response_format": "url"
+       "response_format": "url",
+       "image_size": "square_hd"
      }'
 ```
 
@@ -59,7 +67,8 @@ response = requests.post(
     json={
         "prompt": "[Your Character] chilling in the sun",
         "lora_id": "your-lora-id",
-        "response_format": "url"  # or "base64"
+        "response_format": "url",  # or "base64"
+        "image_size": "square_hd"
     }
 )
 
@@ -79,6 +88,7 @@ fetch('https://api.craftengine.app/image/create/lora', {
     prompt: '[Your Character] chilling in the sun',
     lora_id: 'your-lora-id',
     response_format: 'url', // or "base64"
+    image_size: 'square_hd',
   }),
 })
   .then((res) => res.json())
