@@ -21,13 +21,6 @@ Before generating images, understand the available options:
 - `response_format` (required): Choose between:
   - `url`: Returns a public URL to access your image
   - `base64`: Returns the image data directly, keeping it private within your system
-- `image_size` (optional): Choose your preferred image dimensions:
-  - `square_hd` (default): High-definition square format
-  - `square`: Standard square format
-  - `portrait_4_3`: Portrait orientation with 4:3 aspect ratio
-  - `portrait_16_9`: Portrait orientation with 16:9 aspect ratio
-  - `landscape_4_3`: Landscape orientation with 4:3 aspect ratio
-  - `landscape_16_9`: Landscape orientation with 16:9 aspect ratio
 
 ### 🖥️ Generate an Image
 
@@ -43,14 +36,9 @@ https://api.craftengine.app/image/create/lora
 
 ```bash
 curl -X POST "https://api.craftengine.app/image/create/lora" \
-     -H "X-API-Key: your-api-key" \
-     -H "Content-Type: application/json" \
-     -d '{
-       "prompt": "[Your Character] chilling in the sun",
-       "lora_id": "your-lora-id",
-       "response_format": "url",
-       "image_size": "square_hd"
-     }'
+-H "X-API-Key: your-api-key" \
+-H "Content-Type: application/json" \
+-d '{"prompt": "[Your Character] chilling in the sun", "lora_id": "your-lora-id", "response_format": "url"}'
 ```
 
 ### 🐍 Python
@@ -67,8 +55,7 @@ response = requests.post(
     json={
         "prompt": "[Your Character] chilling in the sun",
         "lora_id": "your-lora-id",
-        "response_format": "url",  # or "base64"
-        "image_size": "square_hd"
+        "response_format": "url"  # or "base64"
     }
 )
 
@@ -88,7 +75,6 @@ fetch('https://api.craftengine.app/image/create/lora', {
     prompt: '[Your Character] chilling in the sun',
     lora_id: 'your-lora-id',
     response_format: 'url', // or "base64"
-    image_size: 'square_hd',
   }),
 })
   .then((res) => res.json())
@@ -103,10 +89,10 @@ Depending on your chosen `response_format`, you'll receive one of these response
 
 ```json
 {
-  "status": "success", // Request status
-  "url": "https://api.craftengine.app/image/12345-image-id", // Public URL to access the image
-  "image_id": "12345-image-id", // Unique identifier for the generated image
-  "processing_time": "6.2" // Time taken to generate the image in seconds
+  "status": "success",
+  "url": "https://api.craftengine.app/image/12345-image-id",
+  "image_id": "12345-image-id",
+  "processing_time": "6.2"
 }
 ```
 
@@ -114,10 +100,10 @@ Depending on your chosen `response_format`, you'll receive one of these response
 
 ```json
 {
-  "status": "success", // Request status
-  "base64": "iVBORw0KGgoAAAANSUhEUgAA...", // Base64 encoded image data
-  "image_id": "12345-image-id", // Unique identifier for the generated image
-  "processing_time": "6.2" // Time taken to generate the image in seconds
+  "status": "success",
+  "base64": "iVBORw0KGgoAAAANSUhEUgAA...",
+  "image_id": "12345-image-id",
+  "processing_time": "6.2"
 }
 ```
 
